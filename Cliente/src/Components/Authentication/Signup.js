@@ -135,18 +135,22 @@ const Signup = () => {
       <FormControl id="first-name" isRequired>
         <FormLabel>Name</FormLabel>
         <Input
+          color="white"
           placeholder="Your Name"
           onChange={(e) => setName(e.target.value)}
           _placeholder={{ color: 'white' }}
+          _focus={{ borderColor: 'teal' }} 
         />
       </FormControl>
       <FormControl id="email" isRequired>
         <FormLabel>Email Address</FormLabel>
         <Input
           type="email"
+          color="white"
           placeholder="Your Email Address"
           onChange={(e) => setEmail(e.target.value)}
           _placeholder={{ color: 'white' }}
+          _focus={{ borderColor: 'teal' }} 
         />
       </FormControl>
       <FormControl id="password" isRequired>
@@ -154,9 +158,11 @@ const Signup = () => {
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
+            color="white"
             placeholder="Your Password"
             onChange={(e) => setPassword(e.target.value)}
             _placeholder={{ color: 'white' }}
+            _focus={{ borderColor: 'teal' }} 
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>
@@ -170,9 +176,11 @@ const Signup = () => {
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
+            color="white"
             placeholder="Confirm your Password"
             onChange={(e) => setConfirmpassword(e.target.value)}
             _placeholder={{ color: 'white' }}
+            _focus={{ borderColor: 'teal' }} 
           />
           <InputRightElement width="4.5rem">
             <Button h="1.75rem" size="sm" onClick={handleClick}>

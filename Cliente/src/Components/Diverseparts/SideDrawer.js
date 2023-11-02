@@ -191,12 +191,15 @@ function SideDrawer() {
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent bg="gray">
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>
             <Box d="flex" pb={2}>
               <Input
+                color="white"
                 placeholder="Search by name or email"
+                _placeholder= {{ color: 'white' }}
+                _focus={{ borderColor: 'teal' }} 
                 mr={2}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
