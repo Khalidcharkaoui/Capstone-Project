@@ -15,7 +15,7 @@ import MychatsBC from './MychatsBC.jpg';
 import io from "socket.io-client";
 import UpdateGroupChatModal from "./Diverseparts/UpdateGroupChatModal";
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:5000"; 
+const ENDPOINT = "https://chatup-egpk.onrender.com/"   //"http://localhost:5000"; 
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {

@@ -192,7 +192,7 @@ function SideDrawer() {
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg="gray">
-          <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px"> <Text color="white" fontWeight="bold" >Search Users</Text></DrawerHeader>
           <DrawerBody>
             <Box d="flex" pb={2}>
               <Input
