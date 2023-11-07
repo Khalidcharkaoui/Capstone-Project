@@ -3,13 +3,13 @@
 
 ChatUp is a Full Stack Chatting App.
 
-Uses Socket.io for real time communication and stores user details in Mongo DB Database. The password is stored encrypted. The profile´s picture is stored in Clouldinary and then his Url is stored in Mongo Db.
+Uses Socket.io for real time communication and stores user details in Mongo DB Database. The password is stored encrypted. The profile´s picture is stored in Clouldinary and then his Url is stored in MongoDb.
 
 ## Tech Stack
 
 **Client:** React JS
 
-**Server:** Node JS, Express JS
+**Server:** Node JS, Express JS, Axios
 
 **Database:** Mongo DB, Couldinary 
   
