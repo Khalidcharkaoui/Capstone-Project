@@ -1,3 +1,5 @@
+//El componente `SingleChat` muestra los mensajes de un chat específico y permite enviar nuevos mensajes
+
 import { FormControl } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
@@ -38,6 +40,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat, setSelectedChat, user, notification, setNotification } =
     ChatState();
 
+    //Función para obtener los mensajes del chat desde el servidor
   const fetchMessages = async () => {
     if (!selectedChat) return;
 
@@ -70,6 +73,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
   };
 
+  // Función para enviar un nuevo mensaje
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
       socket.emit("stop typing", selectedChat._id);
@@ -124,7 +128,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
       if (
-        !selectedChatCompare || // if chat is not selected or doesn't match current chat
+        !selectedChatCompare || // si el chat no está seleccionado o no coincide con el chat actual
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
         if (!notification.includes(newMessageRecieved)) {
@@ -137,6 +141,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     });
   });
 
+  // Manejador para la escritura de mensajes
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
 

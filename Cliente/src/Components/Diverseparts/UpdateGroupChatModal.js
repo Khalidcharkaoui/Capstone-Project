@@ -23,7 +23,11 @@ import UserBadgeItem from "../Users/UserBadgeItem";
 import UserListItem from "../Users/UserListItem";
 
 const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
+
+  // Utiliza el hook `useDisclosure` para manejar la apertura y cierre del modal
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // Estados para manejar el nombre del chat de grupo, resultados de búsqueda, cargas y notificaciones
   const [groupChatName, setGroupChatName] = useState();
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -33,6 +37,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
 
   const { selectedChat, setSelectedChat, user } = ChatState();
 
+  // Función para realizar una búsqueda de usuarios por nombre o correo
   const handleSearch = async (query) => {
     setSearch(query);
     if (!query) {
@@ -63,6 +68,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
     }
   };
 
+  // Función para actualizar el nombre del chat de grupo
   const handleRename = async () => {
     if (!groupChatName) return;
 
@@ -83,7 +89,6 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
       );
 
       console.log(data._id);
-      // setSelectedChat("");
       setSelectedChat(data);
       setFetchAgain(!fetchAgain);
       setRenameLoading(false);
@@ -101,6 +106,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
     setGroupChatName("");
   };
 
+  // Función para agregar un usuario al chat de grupo.
   const handleAddUser = async (user1) => {
     if (selectedChat.users.find((u) => u._id === user1._id)) {
       toast({
@@ -157,6 +163,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
     setGroupChatName("");
   };
 
+  // Función para eliminar un usuario del chat de grupo
   const handleRemove = async (user1) => {
     if (selectedChat.groupAdmin._id !== user._id && user1._id !== user._id) {
       toast({

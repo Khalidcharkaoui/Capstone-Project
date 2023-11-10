@@ -1,11 +1,13 @@
+//El componente `Chatbox` representa el contenedor principal para mostrar un chat
 import { Box } from "@chakra-ui/layout";
 import "./styles.css";
 import SingleChat from "./SingleChat";
 import { ChatState } from "../Context/ChatProvider";
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
-  const { selectedChat } = ChatState();
+  const { selectedChat } = ChatState(); // Obtener el estado del chat seleccionado del contexto
 
+// Mostrar la caja solo si hay un chat seleccionado
   return (
     <Box
       d={{ base: selectedChat ? "flex" : "none", md: "flex" }}
@@ -17,7 +19,8 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
       borderRadius="lg"
       borderWidth="1px"
     >
-      <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+     {/* Renderizar el componente SingleChat dentro de la caja */}
+      <SingleChat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} /> 
     </Box>
   );
 };

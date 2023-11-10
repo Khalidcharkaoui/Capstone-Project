@@ -11,7 +11,7 @@ import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
-  const handleClick = () => setShow(!show);
+  const handleClick = () => setShow(!show);   // Función para alternar la visibilidad de la contraseña
   const toast = useToast();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -20,8 +20,10 @@ const Login = () => {
   const history = useHistory();
   const { setUser } = ChatState();
 
+// Función que maneja el envío del formulario de inicio de sesión
   const submitHandler = async () => {
     setLoading(true);
+  
     if (!email || !password) {
       toast({
         title: "Please Fill all the Feilds",
@@ -32,20 +34,22 @@ const Login = () => {
       });
       setLoading(false);
       return;
-    }
+    } // Validación: asegura que se ingresen el correo y la contraseña
 
     try {
       const config = {
         headers: {
           "Content-type": "application/json",
         },
-      };
+      };      // Configuración de la solicitud HTTP
+
 
       const { data } = await axios.post(
         "/api/user/login",
         { email, password },
         config
-      );
+      );       // Realiza la solicitud de inicio de sesión al servidor
+
 
       toast({
         title: "Login Successful",
@@ -55,9 +59,9 @@ const Login = () => {
         position: "bottom",
       });
       setUser(data);
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(data));   // Muestra un mensaje de éxito y almacena la información del usuario
       setLoading(false);
-      history.push("/chats");
+      history.push("/chats"); // Redirige a la página de chats después del inicio de sesión
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -68,9 +72,11 @@ const Login = () => {
         position: "bottom",
       });
       setLoading(false);
-    }
+    }       // Muestra un mensaje de error en caso de problemas durante el inicio de sesión
+
   };
 
+  // Formulario de iniciar sesión
   return (
     <VStack spacing="10px">
       <FormControl id="email" isRequired>

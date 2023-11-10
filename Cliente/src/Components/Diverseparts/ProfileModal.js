@@ -14,6 +14,14 @@ import {
   Image,
 } from "@chakra-ui/react";
 
+/**
+ * El componente ProfileModal muestra la información del perfil de un usuario
+ * en un modal. Puede ser activado por un icono o cualquier elemento hijo.
+ * @param {object} user - La información del usuario cuyo perfil se mostrará.
+ * @param {React.ReactNode} children - Los elementos hijos que activan el modal.
+ * @returns {React.ReactNode} Componente ProfileModal.
+ */
+
 const ProfileModal = ({ user, children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 

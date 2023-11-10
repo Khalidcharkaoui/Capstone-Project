@@ -1,3 +1,4 @@
+//El componente `MyChats` muestra la lista de chats del usuario y permite la creación de nuevos chats grupales
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
@@ -18,6 +19,7 @@ const MyChats = ({ fetchAgain }) => {
 
   const toast = useToast();
 
+  //Función para obtener la lista de chats del usuario desde el servidor
   const fetchChats = async () => {
     // console.log(user._id);
     try {

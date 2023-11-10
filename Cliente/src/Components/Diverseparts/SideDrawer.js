@@ -32,6 +32,13 @@ import { getSender } from "../../Config/ChatLogics";
 import UserListItem from "../Users/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 
+/**
+ * El componente SideDrawer muestra un panel lateral con funcionalidades como
+ * búsqueda de usuarios, notificaciones y menú de usuario. Además, permite
+ * acceder a perfiles de usuario y realizar acciones relacionadas con el chat.
+ * @returns {React.ReactNode} Componente SideDrawer.
+ */
+
 function SideDrawer() {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -51,11 +58,17 @@ function SideDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
 
+  /**
+   * Maneja el evento de cierre de sesión.
+   */
   const logoutHandler = () => {
     localStorage.removeItem("userInfo");
     history.push("/");
   };
 
+  /**
+   * Maneja la búsqueda de usuarios.
+   */
   const handleSearch = async () => {
     if (!search) {
       toast({
@@ -93,6 +106,10 @@ function SideDrawer() {
     }
   };
 
+/**
+   * Accede al chat de un usuario.
+   * @param {string} userId - ID del usuario al que se accederá al chat.
+   */
   const accessChat = async (userId) => {
     console.log(userId);
 
@@ -124,6 +141,7 @@ function SideDrawer() {
 
   return (
     <>
+     {/* Barra superior del panel lateral */}
       <Box
         d="flex"
         justifyContent="space-between"
@@ -132,6 +150,8 @@ function SideDrawer() {
         w="100%"
         p="5px 10px 5px 10px"
       >
+      
+      {/* Botón de búsqueda */}
         <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
           <Button bg= "#4DB6AC" variant="ghost" onClick={onOpen}>
             <i className="fas fa-search"></i>
@@ -140,11 +160,17 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
+
+        {/* Título del chat */}
         <Text fontSize="2xl" fontFamily="cursive" fontWeight="bold" bg="#A657A6" borderRadius="full" p={2} >
           <div>ChatUp</div> 
         </Text>
+          
+          {/* Menú de notificaciones y perfil de usuario */}
         <div>
           <Menu>
+
+          {/* Botón de notificaciones */}
             <MenuButton p={1}>
               <NotificationBadge
                 count={notification.length}
@@ -152,6 +178,8 @@ function SideDrawer() {
               />
               <BellIcon fontSize="2xl" m={1} />
             </MenuButton>
+
+            {/* Lista de notificaciones */}
             <MenuList pl={2}>
               {!notification.length && "No New Messages"}
               {notification.map((notif) => (
@@ -169,6 +197,8 @@ function SideDrawer() {
               ))}
             </MenuList>
           </Menu>
+            
+            {/* Menú de perfil de usuario */}
           <Menu>
             <MenuButton as={Button} bg="#4DB6AC" rightIcon={<ChevronDownIcon />}>
               <Avatar
@@ -178,6 +208,8 @@ function SideDrawer() {
                 src={user.pic}
               />
             </MenuButton>
+
+            {/* Lista de opciones del menú de usuario */}
             <MenuList bg="gray">
               <ProfileModal user={user}>
                 <MenuItem>My Profile</MenuItem>{" "}
@@ -189,11 +221,13 @@ function SideDrawer() {
         </div>
       </Box>
 
+      {/* Panel lateral */}
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent bg="gray">
           <DrawerHeader borderBottomWidth="1px"> <Text color="white" fontWeight="bold" >Search Users</Text></DrawerHeader>
           <DrawerBody>
+            {/* Barra de búsqueda */}
             <Box d="flex" pb={2}>
               <Input
                 color="white"
@@ -206,6 +240,7 @@ function SideDrawer() {
               />
               <Button onClick={handleSearch}>Go</Button>
             </Box>
+            {/* Resultados de búsqueda */}
             {loading ? (
               <ChatLoading />
             ) : (
@@ -217,6 +252,7 @@ function SideDrawer() {
                 />
               ))
             )}
+            {/* Indicador de carga del chat */}
             {loadingChat && <Spinner ml="auto" d="flex" />}
           </DrawerBody>
         </DrawerContent>
@@ -226,3 +262,4 @@ function SideDrawer() {
 }
 
 export default SideDrawer;
+

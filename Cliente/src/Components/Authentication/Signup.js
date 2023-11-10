@@ -85,6 +85,7 @@ const Signup = () => {
     }
   };
 
+  // Función para procesar y subir la imagen del usuario a Cloudinary
   const postDetails = (pics) => {
     setPicLoading(true);
     if (pics === undefined) {
@@ -130,6 +131,7 @@ const Signup = () => {
     }
   };
 
+  // Formulario de registro
   return (
     <VStack spacing="5px">
       <FormControl id="first-name" isRequired>

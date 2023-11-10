@@ -19,6 +19,14 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../Users/UserBadgeItem";
 import UserListItem from "../Users/UserListItem";
 
+
+/**
+ * El componente GroupChatModal permite a los usuarios crear un chat grupal
+ * especificando un nombre de chat y agregando usuarios seleccionados.
+ * @param {React.ReactNode} children - Los elementos hijos que activan el modal.
+ * @returns {React.ReactNode} Componente GroupChatModal.
+ */
+
 const GroupChatModal = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
@@ -29,6 +37,11 @@ const GroupChatModal = ({ children }) => {
   const toast = useToast();
 
   const { user, chats, setChats } = ChatState();
+
+   /**
+   * Maneja la adición de un usuario a los usuarios seleccionados para el chat grupal.
+   * @param {object} userToAdd - El usuario para agregar al chat grupal.
+   */
 
   const handleGroup = (userToAdd) => {
     if (selectedUsers.includes(userToAdd)) {
@@ -44,6 +57,11 @@ const GroupChatModal = ({ children }) => {
 
     setSelectedUsers([...selectedUsers, userToAdd]);
   };
+
+  /**
+   * Maneja la búsqueda de usuarios según la consulta proporcionada.
+   * @param {string} query - La consulta de búsqueda.
+   */
 
   const handleSearch = async (query) => {
     setSearch(query);
@@ -74,10 +92,19 @@ const GroupChatModal = ({ children }) => {
     }
   };
 
+  /**
+   * Maneja la eliminación de un usuario de los usuarios seleccionados para el chat grupal.
+   * @param {object} delUser - El usuario para eliminar del chat grupal.
+   */
+
   const handleDelete = (delUser) => {
     setSelectedUsers(selectedUsers.filter((sel) => sel._id !== delUser._id));
   };
 
+  /**
+   * Maneja el envío del formulario de creación del chat grupal.
+   */
+  
   const handleSubmit = async () => {
     if (!groupChatName || !selectedUsers) {
       toast({

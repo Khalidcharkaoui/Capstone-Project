@@ -14,15 +14,18 @@ import Login from "../Components/Authentication/Login";
 import Signup from "../Components/Authentication/Signup";
 import chatupLogo from "./Chatup.png";
 
+// Página principal de inicio
 function Homepage() {
   const history = useHistory();
 
+// Redireccionar a la página de chat si el usuario ya está autenticado
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
     if (user) history.push("/chats");
   }, [history]);
 
+// Renderizar la página de inicio
   return (
     <Container maxW="xl" centerContent>
       <Box
